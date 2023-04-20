@@ -1,0 +1,33 @@
+<main class="content">
+  <h1>Electron Timer</h1>
+
+  <div class="progress-wrapper" *ngIf="maxVal">
+    <div class="text" *ngIf="!isFinished">
+      {{ maxVal - currentVal | number : '1.1-1' }}s
+    </div>
+
+    <div class="text" *ngIf="isFinished">
+      ding!
+      <audio autoplay>
+        <source src="assets/chime.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <round-progress [current]="currentVal" [max]="maxVal" [radius]="100" [stroke]="25" [color]="'#45ccce'"
+      [background]="'#eaeaea'" [semicircle]="false" [rounded]="true" [clockwise]="true" [animation]="'easeInOutQuart'">
+    </round-progress>
+
+  </div>
+
+  <div class="controls-wrapper">
+    <div *ngIf="isFinished">
+      <label>Seconds</label>
+      <input type="text" [(ngModel)]="newMax">
+      <button (click)="reset()">Set Timer</button>
+    </div>
+    <button class="button is-info" *ngIf="currentVal <= 0" (click)="start()">Start</button>
+    <button class="button is-danger" *ngIf="!isFinished" (click)="finish()">Set Timer</button>
+  </div>
+
+
+</main>
