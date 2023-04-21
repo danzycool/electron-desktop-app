@@ -12,10 +12,11 @@ export class AppComponent {
   title = 'electron-app';
 
   max = 1;
-  newMax = 1;
   current = 0;
 
   start() {
+    this.current = 0;
+
     const myInterval = interval(100);
 
     myInterval
@@ -34,7 +35,6 @@ export class AppComponent {
   // reset timer
   reset() {
     this.current = 0;
-    this.max = this.newMax;
   }
 
   // Getters to prevent NaN errors

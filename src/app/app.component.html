@@ -3,7 +3,7 @@
 
   <div class="progress-wrapper" *ngIf="maxVal">
     <div class="text" *ngIf="!isFinished">
-      {{ maxVal - currentVal | number : '1.1-1' }}s
+      {{ maxVal - currentVal | number }}s
     </div>
 
     <div class="text" *ngIf="isFinished">
@@ -20,13 +20,12 @@
   </div>
 
   <div class="controls-wrapper">
-    <div *ngIf="isFinished">
-      <label>Seconds</label>
-      <input type="text" [(ngModel)]="newMax">
-      <button (click)="reset()">Set Timer</button>
+    <div>
+      <label><p>Seconds</p></label>
+      <input type="text" [(ngModel)]="max" (keydown)="reset()">
     </div>
-    <button class="button is-info" *ngIf="currentVal <= 0" (click)="start()">Start</button>
-    <button class="button is-danger" *ngIf="!isFinished" (click)="finish()">Set Timer</button>
+    <button class="button is-info" *ngIf="currentVal <= 0 || this.isFinished" (click)="start()">Start</button>
+    <button class="button is-danger" *ngIf="!isFinished" (click)="finish()">Finish</button>
   </div>
 
 
